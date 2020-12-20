@@ -55,7 +55,7 @@ namespace YehudaWebDev
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Airlines}/{action=Index}/{id?}");
             });
         }
     }
