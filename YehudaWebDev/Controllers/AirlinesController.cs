@@ -29,12 +29,17 @@ namespace YehudaWebDev.Controllers
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
-            {
+            {         
                 return NotFound();
             }
 
-            var airlines = await _context.Airlines.Include(plane => plane.AirlineAirplanes)
+            //Airplanes airp = _context.Airplanes
+             //   .Include(line => line.AirplaneAirline == id);
+            
+            var airlines = await _context.Airlines
+                .Include(plane => plane.AirlineAirplanes)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (airlines == null)
             {
                 return NotFound();

@@ -56,12 +56,12 @@ namespace YehudaWebDev.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Manufacturer,AirplaneModel,ManufactureYear,EcoeconomySeats,BusinessSeats")] Airplanes airplanes, string AirplaneAirlineID)
+        public async Task<IActionResult> Create([Bind("Id,Manufacturer,AirplaneModel,ManufactureYear,EcoeconomySeats,BusinessSeats")] Airplanes airplanes, string AirplaneAirlineId)
         {
             if (ModelState.IsValid)
             {
                 // adding to the airplane its airline ID
-                airplanes.AirplaneAirline = _context.Airlines.First(a => a.Id == AirplaneAirlineID);
+                airplanes.AirplaneAirline = _context.Airlines.First(a => a.Id == AirplaneAirlineId);
 
                 _context.Add(airplanes);
                 await _context.SaveChangesAsync();
