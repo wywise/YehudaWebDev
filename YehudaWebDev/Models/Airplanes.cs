@@ -8,7 +8,7 @@ namespace YehudaWebDev.Models
 {
     public class Airplanes
     {
-        [Display(Name = "Airplane Model")]
+        [Display(Name = "Airplane Code")]
         [StringLength(6, MinimumLength = 6, ErrorMessage = "Airplane Model must be 6 characters")]
         [Required]
         public string Id { get; set; }
@@ -29,17 +29,14 @@ namespace YehudaWebDev.Models
 
         [Display(Name = "Ecoeconomy Seats")]
         [Range(0, 300)]
-        [Required]
         public int EcoeconomySeats  { get; set; }
 
         [Display(Name = "Business Seats")]
         [Range(0,35)]
-        [Required]
         public int BusinessSeats { get; set; }
 
 
         [Display(Name = "Airplane Airline")]
-        [Required]
         public Airlines AirplaneAirline { get; set; }
     }
 }

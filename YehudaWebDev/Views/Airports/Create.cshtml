@@ -1,0 +1,58 @@
+﻿@model YehudaWebDev.Models.Airport
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Airport</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportName" class="control-label"></label>
+                <input asp-for="AirportName" class="form-control" />
+                <span asp-validation-for="AirportName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportCountry" class="control-label"></label>
+                <input asp-for="AirportCountry" class="form-control" />
+                <span asp-validation-for="AirportCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportCity" class="control-label"></label>
+                <input asp-for="AirportCity" class="form-control" />
+                <span asp-validation-for="AirportCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportAddress" class="control-label"></label>
+                <input asp-for="AirportAddress" class="form-control" />
+                <span asp-validation-for="AirportAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirportSize" class="control-label"></label>
+                <input asp-for="AirportSize" class="form-control" />
+                <span asp-validation-for="AirportSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

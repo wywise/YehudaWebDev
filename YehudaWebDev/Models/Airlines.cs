@@ -30,7 +30,6 @@ namespace YehudaWebDev.Models
         public double YearlyTravelerNumber { get; set; }
 
         [Display(Name = "Airline Year of establishment")]
-        [MaxLength(4)]
         public int YearOfEstablishment { get; set; }
 
         [Display(Name = "Airline Airplanes list")]

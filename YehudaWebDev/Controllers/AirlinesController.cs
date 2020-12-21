@@ -33,7 +33,7 @@ namespace YehudaWebDev.Controllers
                 return NotFound();
             }
 
-            var airlines = await _context.Airlines
+            var airlines = await _context.Airlines.Include(plane => plane.AirlineAirplanes)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (airlines == null)
             {

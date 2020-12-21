@@ -10,22 +10,22 @@ using YehudaWebDev.Models;
 
 namespace YehudaWebDev.Controllers
 {
-    public class AirplanesController : Controller
+    public class AirportsController : Controller
     {
         private readonly YehudaWebDevContext _context;
 
-        public AirplanesController(YehudaWebDevContext context)
+        public AirportsController(YehudaWebDevContext context)
         {
             _context = context;
         }
 
-        // GET: Airplanes
+        // GET: Airports
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Airplanes.ToListAsync());
+            return View(await _context.Airport.ToListAsync());
         }
 
-        // GET: Airplanes/Details/5
+        // GET: Airports/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -33,44 +33,39 @@ namespace YehudaWebDev.Controllers
                 return NotFound();
             }
 
-            var airplanes = await _context.Airplanes
+            var airport = await _context.Airport
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (airplanes == null)
+            if (airport == null)
             {
                 return NotFound();
             }
 
-            return View(airplanes);
+            return View(airport);
         }
 
-        // GET: Airplanes/Create
+        // GET: Airports/Create
         public IActionResult Create()
         {
-            ViewBag.Airlines = new SelectList(_context.Airlines.ToList(), "Id", "AirlineName");
-
             return View();
         }
 
-        // POST: Airplanes/Create
+        // POST: Airports/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Manufacturer,AirplaneModel,ManufactureYear,EcoeconomySeats,BusinessSeats")] Airplanes airplanes, string AirplaneAirlineID)
+        public async Task<IActionResult> Create([Bind("Id,AirportName,AirportCountry,AirportCity,AirportAddress,AirportSize")] Airport airport)
         {
             if (ModelState.IsValid)
             {
-                // adding to the airplane its airline ID
-                airplanes.AirplaneAirline = _context.Airlines.First(a => a.Id == AirplaneAirlineID);
-
-                _context.Add(airplanes);
+                _context.Add(airport);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(airplanes);
+            return View(airport);
         }
 
-        // GET: Airplanes/Edit/5
+        // GET: Airports/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -78,22 +73,22 @@ namespace YehudaWebDev.Controllers
                 return NotFound();
             }
 
-            var airplanes = await _context.Airplanes.FindAsync(id);
-            if (airplanes == null)
+            var airport = await _context.Airport.FindAsync(id);
+            if (airport == null)
             {
                 return NotFound();
             }
-            return View(airplanes);
+            return View(airport);
         }
 
-        // POST: Airplanes/Edit/5
+        // POST: Airports/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Manufacturer,AirplaneModel,ManufactureYear,EcoeconomySeats,BusinessSeats")] Airplanes airplanes)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,AirportName,AirportCountry,AirportCity,AirportAddress,AirportSize")] Airport airport)
         {
-            if (id != airplanes.Id)
+            if (id != airport.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace YehudaWebDev.Controllers
             {
                 try
                 {
-                    _context.Update(airplanes);
+                    _context.Update(airport);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AirplanesExists(airplanes.Id))
+                    if (!AirportExists(airport.Id))
                     {
                         return NotFound();
                     }
@@ -118,10 +113,10 @@ namespace YehudaWebDev.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(airplanes);
+            return View(airport);
         }
 
-        // GET: Airplanes/Delete/5
+        // GET: Airports/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -129,30 +124,30 @@ namespace YehudaWebDev.Controllers
                 return NotFound();
             }
 
-            var airplanes = await _context.Airplanes
+            var airport = await _context.Airport
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (airplanes == null)
+            if (airport == null)
             {
                 return NotFound();
             }
 
-            return View(airplanes);
+            return View(airport);
         }
 
-        // POST: Airplanes/Delete/5
+        // POST: Airports/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var airplanes = await _context.Airplanes.FindAsync(id);
-            _context.Airplanes.Remove(airplanes);
+            var airport = await _context.Airport.FindAsync(id);
+            _context.Airport.Remove(airport);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AirplanesExists(string id)
+        private bool AirportExists(string id)
         {
-            return _context.Airplanes.Any(e => e.Id == id);
+            return _context.Airport.Any(e => e.Id == id);
         }
     }
 }

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YehudaWebDev.Data;
 
 namespace YehudaWebDev.Migrations
 {
     [DbContext(typeof(YehudaWebDevContext))]
-    partial class YehudaWebDevContextModelSnapshot : ModelSnapshot
+    [Migration("20201221071706_cnceld-some-req")]
+    partial class cnceldsomereq
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,8 @@ namespace YehudaWebDev.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("YearOfEstablishment")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasMaxLength(4);
 
                     b.Property<double>("YearlyTravelerNumber")
                         .HasColumnType("float");
@@ -80,37 +83,6 @@ namespace YehudaWebDev.Migrations
                     b.HasIndex("AirplaneAirlineId");
 
                     b.ToTable("Airplanes");
-                });
-
-            modelBuilder.Entity("YehudaWebDev.Models.Airport", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
-
-                    b.Property<string>("AirportAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AirportCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AirportCountry")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AirportName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AirportSize")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(4)")
-                        .HasMaxLength(4);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Airport");
                 });
 
             modelBuilder.Entity("YehudaWebDev.Models.Airplanes", b =>

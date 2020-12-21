@@ -17,5 +17,7 @@ namespace YehudaWebDev.Data
         public DbSet<YehudaWebDev.Models.Airlines> Airlines { get; set; }
 
         public DbSet<YehudaWebDev.Models.Airplanes> Airplanes { get; set; }
+
+        public DbSet<YehudaWebDev.Models.Airport> Airport { get; set; }
     }
 }
